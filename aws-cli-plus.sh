@@ -7,7 +7,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 export APP_HOME="$(
-    cd "$(dirname $(readlink -nf "$0"))"/..
+    cd "$(dirname $(readlink -nf "$0"))"
     pwd -P
 )"
 
@@ -43,16 +43,22 @@ parseArgs() {
                 REGION="${2}"
                 shift 2
                 ;;
+            --ssh-key)
+                SSH_KEY="$2"
+                # chmod in case its mod is not 600
+                chmod 600 $SSH_KEY
+                shift 2
+                ;;
             --access-key-id)
                 ACCESS_KEY_ID="${2}"
                 shift 2
                 ;;
             --secret-access-key)
-                ACCESS_KEY="${2}"
+                SECRET_ACCESS_KEY="${2}"
                 shift 2
                 ;;
             --emr-cluster-id)
-                SECRET_ACCESS_KEY="${2}"
+                EMR_CLUSTER_ID="${2}"
                 shift 2
                 ;;
             --) # No more arguments

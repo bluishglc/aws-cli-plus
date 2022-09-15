@@ -7,7 +7,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 PROJECT_HOME="$(
-    cd "$(dirname $(readlink -nf "$0"))"/..
+    cd "$(dirname $(readlink -nf "$0"))"
     pwd -P
 )"
 
@@ -16,7 +16,7 @@ INSTALL_HOME="/opt/${PROJECT_HOME##*/}"
 echo "install cli ..."
 rm -rf $INSTALL_HOME
 mkdir -p $INSTALL_HOME
-cp -r $PROJECT_HOME/* $INSTALL_HOME/*
+cp -r $PROJECT_HOME/* $INSTALL_HOME
 
 # create shortcuts for cli
 echo "create shortcuts for cli ..."

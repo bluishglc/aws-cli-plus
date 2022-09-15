@@ -6,7 +6,9 @@ listServices() {
     printHeading "SERVICES LIST"
     for masterNode in $(getEmrClusterNodes); do
         echo "SERVICES ON: [ $masterNode ]"
-        ssh -o StrictHostKeyChecking=no -i $SSH_KEY -T hadoop@$masterNode sudo systemctl | grep hadoop
+        ssh -o StrictHostKeyChecking=no -i $SSH_KEY -T hadoop@$masterNode <<EOSSH
+            sudo systemctl | grep -e hadoop.*service -e hive.*service -e hbase.*service -e zookeeper.*service -e hue.*service
+EOSSH
     done
 }
 
