@@ -2,6 +2,11 @@
 
 # ----------------------------------------    Query Cluster Info Operations   ---------------------------------------- #
 
+listApps() {
+    aws emr describe-cluster --region $REGION --cluster-id $EMR_CLUSTER_ID | jq -r '.Cluster.Applications[].Name'
+}
+
+
 listServices() {
     printHeading "SERVICES LIST"
     for node in $(getEmrClusterNodes); do

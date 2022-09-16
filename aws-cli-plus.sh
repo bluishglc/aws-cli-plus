@@ -97,6 +97,9 @@ case $SERVICE in
     ;;
     emr)
         case $ACTION in
+            list-apps)
+                listApps
+            ;;
             list-services)
                 listServices
             ;;
