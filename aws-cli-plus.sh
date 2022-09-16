@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Run the below commands as root
-if [ "$(whoami)" != "root" ]; then
-    echo "Run me as [ root ] user!"
-    exit 1
-fi
+#if [ "$(whoami)" != "root" ]; then
+#    echo "Run me as [ root ] user!"
+#    exit 1
+#fi
 
 export APP_HOME="$(
     cd "$(dirname $(readlink -nf "$0"))"
@@ -99,6 +99,9 @@ case $SERVICE in
         case $ACTION in
             list-services)
                 listServices
+            ;;
+            list-packages)
+                listPackages
             ;;
             find-log-errors)
                 findLogErrors

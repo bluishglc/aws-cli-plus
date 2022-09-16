@@ -4,12 +4,51 @@
 
 listServices() {
     printHeading "SERVICES LIST"
-    for masterNode in $(getEmrClusterNodes); do
-        echo "SERVICES ON: [ $masterNode ]"
-        ssh -o StrictHostKeyChecking=no -i $SSH_KEY -T hadoop@$masterNode <<EOSSH
-            sudo systemctl | grep -e hadoop.*service -e hive.*service -e hbase.*service -e zookeeper.*service -e hue.*service
+    for node in $(getEmrClusterNodes); do
+        echo -ne "\n\E[33m[ $node ]\E[0m\n\n"
+        ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -i $SSH_KEY -T hadoop@$node <<EOSSH
+            sudo systemctl -t service --no-legend --no-pager | grep \
+                -e ^hadoop.*service \
+                -e ^spark.*service \
+                -e ^hive.*service \
+                -e ^hbase.*service \
+                -e ^zookeeper.*service \
+                -e ^hue.*service \
+                -e ^trino.*service \
+                -e ^presto.*service \
+                -e ^livy.*service \
+                -e ^oozie.*service \
+                -e ^phoenix.*service \
+                -e ^zeppelin.*service \
+                -e ^emr-notebook.*service
 EOSSH
     done
+    echo ""
+}
+
+listPackages() {
+    printHeading "PACKAGES LIST"
+    for node in $(getEmrClusterNodes); do
+        echo -ne "\n\E[33m[ $node ]\E[0m\n\n"
+        ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -i $SSH_KEY -T hadoop@$node <<EOSSH
+            sudo yum list installed | cut -d ' ' -f 1 | grep \
+                -e ^hadoop \
+                -e ^spark \
+                -e ^hudi \
+                -e ^hive \
+                -e ^hbase \
+                -e ^zookeeper \
+                -e ^hue \
+                -e ^trino \
+                -e ^presto \
+                -e ^livy \
+                -e ^oozie \
+                -e ^phoenix \
+                -e ^zeppelin \
+                -e ^emr-notebook
+EOSSH
+    done
+    echo ""
 }
 
 # An emr cluster has only one master instance group
@@ -34,7 +73,7 @@ getSlaveInstanceGroupIds() {
     fi
     if [ "$SLAVE_INSTANCE_GROUP_IDS" = "" ]; then
         SLAVE_INSTANCE_GROUP_IDS=$(aws emr describe-cluster --region $REGION --cluster-id $EMR_CLUSTER_ID | \
-            jq -r '.Cluster.InstanceGroups[] | select((.InstanceGroupType == "CORE") or (.InstanceGroupType == "SLAVE")) | .Id' | tr -s ' ')
+            jq -r '.Cluster.InstanceGroups[] | select((.InstanceGroupType == "CORE") or (.InstanceGroupType == "TASK")) | .Id' | tr -s ' ')
     fi
     echo $SLAVE_INSTANCE_GROUP_IDS
 }
