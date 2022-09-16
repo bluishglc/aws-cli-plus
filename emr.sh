@@ -38,6 +38,7 @@ listPackages() {
             sudo yum list installed | cut -d ' ' -f 1 | grep \
                 -e ^hadoop \
                 -e ^spark \
+                -e ^flink \
                 -e ^hudi \
                 -e ^hive \
                 -e ^hbase \
