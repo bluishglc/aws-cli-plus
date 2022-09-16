@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# ----------------------------------------    Query Cluster Info Operations   ---------------------------------------- #
-
 listApps() {
     printHeading "APPS LIST"
     aws emr describe-cluster --region $REGION --cluster-id $EMR_CLUSTER_ID | jq -r '.Cluster.Applications[] | [.Name, .Version] | @tsv' | column -t

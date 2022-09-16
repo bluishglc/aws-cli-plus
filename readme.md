@@ -1,5 +1,6 @@
 # AWS CLI PLUS
 
+This command line tool is a useful complement to aws-cli. It offers a suite of utilities that manages and operates ec2, emr and other aws services.
 
 ## Install
 

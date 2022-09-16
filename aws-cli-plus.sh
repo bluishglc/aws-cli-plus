@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Run the below commands as root
-#if [ "$(whoami)" != "root" ]; then
-#    echo "Run me as [ root ] user!"
-#    exit 1
-#fi
-
 export APP_HOME="$(
     cd "$(dirname $(readlink -nf "$0"))"
     pwd -P
