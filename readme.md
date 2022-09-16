@@ -9,4 +9,9 @@ aws-cli-plus emr list-services \
     --region "cn-north-1" \
 	--ssh-key "/path/to/my/pem/file" \
 	--emr-cluster-id "j-my-emr-cluster-id"
+	
+aws-cli-plus emr list-packages \
+    --region "cn-north-1" \
+	--ssh-key "/path/to/my/pem/file" \
+	--emr-cluster-id "j-my-emr-cluster-id"
 ```
