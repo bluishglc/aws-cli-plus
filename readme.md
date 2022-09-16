@@ -5,6 +5,7 @@ This command line tool is a useful complement to aws-cli. It offers a suite of u
 ## Install
 
 ```bash
+sudo yum -y install git
 git clone https://github.com/bluishglc/aws-cli-plus.git
 sudo ./aws-cli-plus/install.sh
 ```
@@ -50,5 +51,6 @@ aws-cli-plus emr find-log-errors --region "$REGION" --emr-cluster-id "$EMR_CLUST
 ### EC2
 
 ```bash
-aws-cli-plus ec2 init --region "$REGION" --access-key-id "$ACCESS_KEY_ID" --secret-access-key "$SECRET_ACCESS_KEY"
+# sudo is required for ec2 init operation
+sudo aws-cli-plus ec2 init --region "$REGION" --access-key-id "$ACCESS_KEY_ID" --secret-access-key "$SECRET_ACCESS_KEY"
 ```

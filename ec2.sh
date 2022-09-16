@@ -1,6 +1,12 @@
 #!/bin/bash
 
 initEc2() {
+    # Run the below commands as root
+    if [ "$(whoami)" != "root" ]; then
+        echo "Init ec2 requires [ root ] user!"
+        exit 1
+    fi
+
     if [[ "$REGION" = "" || "$ACCESS_KEY_ID" = "" || "$SECRET_ACCESS_KEY" = "" ]]; then
         echo "ERROR! --region or --access-key-id or --secret-access-key is not provided!"
         exit 1
