@@ -22,7 +22,7 @@ cp -r $PROJECT_HOME/* $INSTALL_HOME
 echo "create shortcuts for cli ..."
 sudo yum list installed jq &> /dev/null
 if [ "$?" != "0" ]; then sudo yum -y install jq; fi
-sudo rm -f "/usr/bin/aws-cli-plus"
-sudo ln -s "$INSTALL_HOME/aws-cli-plus.sh" "/usr/bin/aws-cli-plus"
+sudo rm -f "/usr/bin/aws+"
+sudo ln -s "$INSTALL_HOME/aws+.sh" "/usr/bin/aws+"
 
 echo "done!"

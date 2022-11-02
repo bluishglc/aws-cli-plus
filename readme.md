@@ -27,25 +27,29 @@ export EMR_CLUSTER_ID='<your-emr-cluster-id>'
 #### 3.1.1 List Apps
 
 ```bash
-aws-cli-plus emr list-apps --region "$REGION" --emr-cluster-id "$EMR_CLUSTER_ID"
+aws+ emr list-apps --region "$REGION" --emr-cluster-id "$EMR_CLUSTER_ID"
+amz emr list-apps --region "$REGION" --emr-cluster-id "$EMR_CLUSTER_ID"
+
+
+aws+ emr list-apps --region "$REGION" --emr-cluster-id "$EMR_CLUSTER_ID"
 ```
 
 #### 3.1.2 List Services
 
 ```bash
-aws-cli-plus emr list-services --region "$REGION" --ssh-key "$SSH_KEY" --emr-cluster-id "$EMR_CLUSTER_ID"
+aws+ emr list-services --region "$REGION" --ssh-key "$SSH_KEY" --emr-cluster-id "$EMR_CLUSTER_ID"
 ```
 
 #### 3.1.3 List Packages
 
 ```bash
-aws-cli-plus emr list-packages --region "$REGION" --ssh-key "$SSH_KEY" --emr-cluster-id "$EMR_CLUSTER_ID"
+aws+ emr list-packages --region "$REGION" --ssh-key "$SSH_KEY" --emr-cluster-id "$EMR_CLUSTER_ID"
 ```
 
 #### 3.1.4 Find Log Errors
 
 ```bash
-aws-cli-plus emr find-log-errors --region "$REGION" --emr-cluster-id "$EMR_CLUSTER_ID"
+aws+ emr find-log-errors --region "$REGION" --emr-cluster-id "$EMR_CLUSTER_ID"
 ```
 
 ### 3.2 EC2
@@ -54,5 +58,5 @@ aws-cli-plus emr find-log-errors --region "$REGION" --emr-cluster-id "$EMR_CLUST
 
 ```bash
 # sudo is required for ec2 init operation
-sudo aws-cli-plus ec2 init --region "$REGION" --access-key-id "$ACCESS_KEY_ID" --secret-access-key "$SECRET_ACCESS_KEY"
+sudo aws+ ec2 init --region "$REGION" --access-key-id "$ACCESS_KEY_ID" --secret-access-key "$SECRET_ACCESS_KEY"
 ```
