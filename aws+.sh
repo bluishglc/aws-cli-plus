@@ -25,12 +25,12 @@ parseArgs() {
     # IMPORTANT!! -o option can not be omitted, even there are no any short options!
     # otherwise, parsing will go wrong!
     OPTS=$(getopt -o "" -l "$optString" -- "$@")
-    exitCode=$?
-    if [ $exitCode -ne 0 ]; then
-        echo ""
-        printUsage
-        exit 1
-    fi
+#    exitCode=$?
+#    if [ $exitCode -ne 0 ]; then
+#        echo ""
+#        printUsage
+#        exit 1
+#    fi
     eval set -- "$OPTS"
     while true; do
         case "$1" in
