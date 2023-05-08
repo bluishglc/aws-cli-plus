@@ -21,16 +21,16 @@ parseArgs() {
         printUsage
         exit 0
     fi
-    optString="region:,ssh-key:,access-key-id:,secret-access-key:,emr-cluster-id:"
+    optString="region:,ssh-key:,access-key-id:,secret-access-key:,emr-cluster-id:,mysql-root-password:"
     # IMPORTANT!! -o option can not be omitted, even there are no any short options!
     # otherwise, parsing will go wrong!
     OPTS=$(getopt -o "" -l "$optString" -- "$@")
-#    exitCode=$?
-#    if [ $exitCode -ne 0 ]; then
-#        echo ""
-#        printUsage
-#        exit 1
-#    fi
+    exitCode=$?
+    if [ $exitCode -ne 0 ]; then
+        echo ""
+        printUsage
+        exit 1
+    fi
     eval set -- "$OPTS"
     while true; do
         case "$1" in
@@ -54,6 +54,10 @@ parseArgs() {
                 ;;
             --emr-cluster-id)
                 EMR_CLUSTER_ID="${2}"
+                shift 2
+                ;;
+            --mysql-root-password)
+                MYSQL_ROOT_PASSWORD="${2}"
                 shift 2
                 ;;
             --) # No more arguments
