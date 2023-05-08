@@ -6,9 +6,9 @@ installMySqlIfNotExists() {
     systemctl --type=service --state=running | grep mysqld
     if [ ! "$?" = "0" ]; then
         printHeading "INSTALL MYSQL"
-#        installMySqlViaYum
+        installMySqlViaYum
         # switch to rpm installing in case the bind width of mysql yum repo site is poor
-        installMySqlViaRpm
+#        installMySqlViaRpm
         systemctl enable mysqld
         systemctl start mysqld
         systemctl status mysqld

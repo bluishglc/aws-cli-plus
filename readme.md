@@ -1,5 +1,7 @@
 # AWS CLI PLUS
 
+NOTE: a bug to be fix: readlink can NOT solve original link of aws+ 
+
 This command line tool is a useful complement to aws-cli. It offers a suite of utilities that manages and operates ec2, emr and other aws services.
 
 ## 1. Install
@@ -66,5 +68,5 @@ sudo aws+ ec2 init --region "$REGION" --access-key-id "$ACCESS_KEY_ID" --secret-
 #### 3.3.1 Install MySQL
 
 ```bash
-aws+ mysql install
+sudo aws+ mysql install --mysql-root-password 'Admin1234!'
 ```
