@@ -9,6 +9,7 @@ export AWS_PAGER=""
 
 source "$APP_HOME/ec2.sh"
 source "$APP_HOME/emr.sh"
+source "$APP_HOME/mysql.sh"
 source "$APP_HOME/utils.sh"
 
 printUsage() {
@@ -102,6 +103,16 @@ case $SERVICE in
             ;;
             find-log-errors)
                 findLogErrors
+            ;;
+            *)
+                printUsage
+            ;;
+        esac
+    ;;
+    mysql)
+        case $ACTION in
+            install)
+                installMySqlIfNotExists
             ;;
             *)
                 printUsage

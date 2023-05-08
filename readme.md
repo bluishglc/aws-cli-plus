@@ -60,3 +60,11 @@ aws+ emr find-log-errors --region "$REGION" --emr-cluster-id "$EMR_CLUSTER_ID"
 # sudo is required for ec2 init operation
 sudo aws+ ec2 init --region "$REGION" --access-key-id "$ACCESS_KEY_ID" --secret-access-key "$SECRET_ACCESS_KEY"
 ```
+
+### 3.3 MySQL
+
+#### 3.3.1 Install MySQL
+
+```bash
+aws+ mysql install
+```
