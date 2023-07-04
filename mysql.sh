@@ -7,8 +7,6 @@ installMySqlIfNotExists() {
     if [ ! "$?" = "0" ]; then
         printHeading "INSTALL MYSQL"
         installMySqlViaYum
-        # switch to rpm installing in case the bind width of mysql yum repo site is poor
-#        installMySqlViaRpm
         systemctl enable mysqld
         systemctl start mysqld
         systemctl status mysqld
@@ -32,17 +30,6 @@ installMySqlViaYum() {
     # update gpg key, this is required after 2022
     rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
     yum -y install mysql-community-server --nogpgcheck
-}
-
-installMySqlViaRpm() {
-    yum -y remove mariadb-libs
-    yum -y install ncurses-compat-libs
-    # note: only provide x86_64 rpm packages
-    rpm -ivh /tmp/ranger-repo/mysql-community-common-5.7.38-1.el7.x86_64.rpm
-    rpm -ivh /tmp/ranger-repo/mysql-community-libs-5.7.38-1.el7.x86_64.rpm
-    rpm -ivh /tmp/ranger-repo/mysql-community-libs-compat-5.7.38-1.el7.x86_64.rpm
-    rpm -ivh /tmp/ranger-repo/mysql-community-client-5.7.38-1.el7.x86_64.rpm
-    rpm -ivh /tmp/ranger-repo/mysql-community-server-5.7.38-1.el7.x86_64.rpm
 }
 
 installMySqlCliIfNotExists() {

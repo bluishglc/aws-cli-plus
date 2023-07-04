@@ -22,7 +22,7 @@ installTools() {
     yum -y update
     # install common tools
     yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E '%{rhel}').noarch.rpm
-    yum -y install lrzsz vim wget zip unzip expect tree htop iotop nc telnet jq
+    yum -y install lrzsz vim wget zip unzip expect tree htop iotop nc telnet jq bash-completion tcpdump traceroute nmap-ncat
 
     # change timezone
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -111,7 +111,7 @@ installJdk8IfNotExists() {
         printHeading "INSTALL OPEN JDK8"
         yum -y install java-1.8.0-openjdk-devel
         printHeading "MAKE AND EXPORT JAVA ENV VARS"
-        echo "export JAVA_HOME=$JAVA_HOME;export PATH=$JAVA_HOME/bin:$PATH" > /etc/profile.d/java.sh
+        echo "export JAVA_HOME=$JAVA_HOME;export PATH=\$JAVA_HOME/bin:\$PATH" > /etc/profile.d/java.sh
         source /etc/profile.d/java.sh
         # make sure ec2-user also set JAVA_HOME, only works after re-login as ec2-user
         # not work for current ssh session!
